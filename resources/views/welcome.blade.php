@@ -2,7 +2,7 @@
 @section('content')
 <div class="content">
     <div class="container">
-        <h2 class="title  py-4 text-center">
+        <h2 class="title  pt-4 text-center" style="margin-top:10rem;">
             Welcome to Jareer
         </h2>
         @auth
