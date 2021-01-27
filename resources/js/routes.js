@@ -40,11 +40,11 @@ import statusList from "./components/orderstatus/list.vue";
 import statusAdd from "./components/orderstatus/add.vue";
 import statusEdit from "./components/orderstatus/edit.vue";
 
-
 import orderList from "./components/order/list.vue";
 import orderAdd from "./components/order/add.vue";
 import orderView from "./components/order/view.vue";
 
+import NotFoundPage from "./components/notfound.vue";
 
 export const routes = [
     {
@@ -183,5 +183,9 @@ export const routes = [
     {
         path: "/order/view/:id?",
         component: orderView
+    },
+    {
+        path: "*",
+        component: NotFoundPage
     }
 ];

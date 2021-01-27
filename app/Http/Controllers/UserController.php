@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Session;
+use Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -127,5 +129,13 @@ class UserController extends Controller
             return response()->json(['error' => 'Not found'], 403);
         }
         return response()->json(null);
+    }
+    public function logout()
+    {
+
+        $user_id = Auth::id();
+        Auth::logout();
+        Session::flush();
+        return Redirect::to('/');
     }
 }

@@ -38,6 +38,15 @@
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-group>
+
+                <v-list-item  href="/logoutuser" >
+                    <v-list-item-action>
+                        <v-icon>mdi-logout</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Logout</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>
 

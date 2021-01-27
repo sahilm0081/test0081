@@ -61,9 +61,9 @@
                     </v-card-actions>
                 </v-card>
             </v-col>
-            <v-col lg="6">
+            <v-col lg="12">
                 <template>
-                    <h4 class="pt-4">Latest 5 Orders</h4>
+                    <h4 class="pt-4">Last 5 Orders</h4>
                     <v-simple-table dense>
                         <template v-slot:default>
                             <thead>

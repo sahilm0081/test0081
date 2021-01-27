@@ -37,7 +37,7 @@ Route::prefix('/app')->group(function () {
     Route::post('/orderupdate/{id}', 'OrderController@updatePaymentId');
     Route::get('/dashboard', 'DashboardController@index');
 });
-
+Route::get('/logoutuser', 'UserController@logout');
 Route::get('/{any}', function () {
     return view('home');
 })->where('any', '.*');
