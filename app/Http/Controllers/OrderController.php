@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $data = Order::with('user')->get();
+        $data = Order::with(['user','status'])->get();
         return $data;
     }
 
@@ -103,7 +103,7 @@ class OrderController extends Controller
     public function show($id)
     {
         //
-        $data = Order::findOrFail($id);
+        $data = Order::with(['user','orderProducts','status'])->where('id', $id)->first();
         return $data;
     }
 

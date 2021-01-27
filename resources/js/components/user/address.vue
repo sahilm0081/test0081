@@ -85,6 +85,12 @@
                                                     required
                                                 ></v-text-field>
                                             </v-col>
+                                            <v-col cols="12" sm="6" md="4">
+                                                <v-checkbox
+                                                    v-model="editedItem.primary"
+                                                    label="Make default"
+                                                ></v-checkbox>
+                                            </v-col>
                                         </v-row>
                                     </v-container>
                                 </v-card-text>
@@ -108,12 +114,16 @@
                 </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
+               
                 <!-- <v-icon small class="mr-2" @click="editItem(item)">
                     mdi-pencil
                 </v-icon>  -->
                 <v-icon small @click="deleteItem(item)">
                     mdi-delete
                 </v-icon>
+                 <v-chip v-if ="item.primary" class="ma-2" color="primary">
+                    Default
+                </v-chip>
             </template>
             <template v-slot:no-data>
                 <v-btn color="primary" @click="initialize">
@@ -152,7 +162,8 @@ export default {
                 zone_no: "",
                 street_name: "",
                 landmark: "",
-                area: ""
+                area: "",
+                primary: 0
             },
             defaultItem: {
                 bldg_no: "",
@@ -160,7 +171,8 @@ export default {
                 zone_no: "",
                 street_name: "",
                 landmark: "",
-                area: ""
+                area: "",
+                primary: 0
             }
         };
     },
@@ -232,7 +244,7 @@ export default {
                     if (response.status == 201) {
                         this.$toasted.show("Added");
                         this.close();
-                       
+
                         if (this.editedIndex > -1) {
                             Object.assign(
                                 this.addresses[this.editedIndex],
@@ -252,7 +264,7 @@ export default {
                         let msg = "Please check your validation!";
                         if (response.data) {
                             for (var prop in response.data.errors) {
-                            this.$toasted.show(response.data.errors[prop]);
+                                this.$toasted.show(response.data.errors[prop]);
                             }
                         }
                     } else {

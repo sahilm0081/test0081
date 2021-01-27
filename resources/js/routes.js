@@ -43,6 +43,7 @@ import statusEdit from "./components/orderstatus/edit.vue";
 
 import orderList from "./components/order/list.vue";
 import orderAdd from "./components/order/add.vue";
+import orderView from "./components/order/view.vue";
 
 
 export const routes = [
@@ -178,5 +179,9 @@ export const routes = [
     {
         path: "/order/add",
         component: orderAdd
+    },
+    {
+        path: "/order/view/:id?",
+        component: orderView
     }
 ];

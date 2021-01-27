@@ -21,9 +21,9 @@
             </v-card-title>
             <v-data-table :headers="headers" :items="orders" :search="search">
                 <template v-slot:item.actions="{ item }">
-                    <!-- <v-icon small class="mr-2" @click="editItem(item)">
-                        mdi-pencil
-                    </v-icon> -->
+                    <v-icon small class="mr-2" @click="viewItem(item)">
+                        mdi-eye
+                    </v-icon>
                     <v-icon small @click="deleteItem(item)">
                         mdi-delete
                     </v-icon>
@@ -86,6 +86,7 @@ export default {
                 { text: "Name", value: "user.name" },
                 { text: "Email", value: "user.email" },
                 { text: "Total Price", value: "price" },
+                { text: "Order status", value: "status.name" },
                 { text: "Actions", value: "actions", sortable: false }
             ],
             search: "",
@@ -117,6 +118,9 @@ export default {
             this.editedIndex = this.orders.indexOf(item);
             this.editedItem = Object.assign({}, item);
             this.dialog = true;
+        },
+        viewItem(item) {
+            this.$router.push("/order/view/" + item.id);
         },
         close() {
             this.dialog = false;

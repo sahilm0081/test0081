@@ -57,6 +57,7 @@ class UserAddressController extends Controller
             'landmark' => $request->landmark,
             'area' => $request->area,
             'user_id' => $id,
+            'primary'=>$request->primary ?? 0
 
         ]);
     }

@@ -81,10 +81,13 @@ const router = new VueRouter({
 });
 let userData = window.authUser;
 router.beforeEach((to, from, next) => {
-    if (userData) {
+    const userType = userData.user_type;
+    if (userData && userType) {
         next();
+    } else if (userData && !userType) {
+        window.location.href = "/home";
     } else {
-        window.location.href="/login";
+        window.location.href = "/login";
     }
     return;
 });
