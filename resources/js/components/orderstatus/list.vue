@@ -30,7 +30,7 @@
                 </template>
             </v-data-table>
         </v-card>
-        <router-view></router-view>
+        
     </div>
 </template>
 

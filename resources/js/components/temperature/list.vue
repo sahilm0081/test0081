@@ -30,7 +30,7 @@
                 </template>
             </v-data-table>
         </v-card>
-        <router-view></router-view>
+        
     </div>
 </template>
 
@@ -59,9 +59,7 @@ export default {
                     this.$toasted.show("Server Error!");
                 });
         },
-        addItem() {
-            this.$router.push("/trouser/add");
-        },
+        
         editItem(item) {
             this.$router.push("/temperature/edit/" + item.id);
         },

@@ -30,7 +30,7 @@
                 </template>
             </v-data-table>
         </v-card>
-        <router-view></router-view>
+        
     </div>
 </template>
 
@@ -60,9 +60,7 @@ export default {
                     this.$toasted.show("Server Error!");
                 });
         },
-        addItem() {
-            this.$router.push("/product/add");
-        },
+        
         editItem(item) {
             this.$router.push("/product/edit/" + item.id);
         },
