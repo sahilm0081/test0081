@@ -7,12 +7,12 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <title>{{ config('app.name', 'Jareer') }}</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -21,9 +21,9 @@
     @guest
     @include('navbar')
     @endguest
-
-    @yield('content')
-
+    <div id="app">
+        @yield('content')
+    </div>
 
 </body>
 
