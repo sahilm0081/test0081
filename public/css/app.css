@@ -10944,3 +10944,19 @@ a.text-dark:focus {
   }
 }
 
+.bg-white {
+  background-color: #2196f3 !important;
+}
+
+.color-white {
+  color: #fff !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.bluebg {
+  background-color: #2196f3 !important;
+}
+

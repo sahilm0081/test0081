@@ -1,5 +1,5 @@
 <template>
-    <v-app color="orange">
+    <v-app  >
         <Header></Header>
         <v-main>
             <v-container>
@@ -18,4 +18,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

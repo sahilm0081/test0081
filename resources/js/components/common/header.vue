@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-navigation-drawer v-model="drawer" app clipped>
+        <v-navigation-drawer v-model="drawer" app clipped color="primary" dark>
             <v-list dense>
                 <v-list-item v-for="menu in mainItems" link :to="menu.link" :key="menu.id">
                     <v-list-item-action>
@@ -16,6 +16,7 @@
                     :key="item.title"
                     :prepend-icon="item.action"
                     no-action
+                    active-class="black elevation-16  white--text"
                 >
                     <template v-slot:activator>
                         <v-list-item-content>
@@ -30,6 +31,7 @@
                         :key="child.title"
                         link
                         :to="child.link"
+                        active-class=" elevation-16  white--text"
                     >
                         <v-list-item-content>
                             <v-list-item-title
@@ -50,7 +52,7 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar app clipped-left>
+        <v-app-bar app clipped-left color="primary" dark>
             <v-app-bar-nav-icon
                 @click.stop="drawer = !drawer"
             ></v-app-bar-nav-icon>
@@ -91,7 +93,7 @@ export default {
         
     }),
     created() {
-        this.$vuetify.theme.dark = false;
+       // this.$vuetify.theme.dark = true;
     }
 };
 </script>
