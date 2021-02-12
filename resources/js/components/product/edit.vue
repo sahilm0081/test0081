@@ -3,6 +3,20 @@
         <form @submit.prevent="handleSubmit" method="POST" refs="form">
             <validation-provider
                 v-slot="{ errors }"
+                name="Select Gender"
+                rules="required"
+            >
+                <v-select
+                    :items="genders"
+                    :error-messages="errors"
+                    label="Select Gender"
+                    required
+                    name="gender"
+                    v-model="form.gender"
+                ></v-select>
+            </validation-provider>
+            <validation-provider
+                v-slot="{ errors }"
                 name="Name"
                 rules="required|max:50"
             >
@@ -47,8 +61,10 @@ export default {
         loading: false,
         form: {
             name: "",
-            price: ""
-        }
+            price: "",
+            gender: ""
+        },
+        genders: ["Men", "Women"]
     }),
 
     methods: {
@@ -58,6 +74,7 @@ export default {
             const params = {
                 name: this.form.name,
                 price: this.form.price,
+                gender: this.form.gender,
                 _method: "put"
             };
             await axios
@@ -90,6 +107,7 @@ export default {
                     if (data.name) {
                         this.form.name = data.name;
                         this.form.price = data.price;
+                        this.form.gender = data.gender;
                     } else {
                         this.$toasted.show("Server Error!");
                     }

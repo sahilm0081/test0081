@@ -45,6 +45,7 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
+            'gender' => 'required',
 
         ], $messages);
         if ($validator->fails()) {
@@ -53,7 +54,9 @@ class ProductController extends Controller
         }
         return Product::create([
             'name' => $request->name,
-            'price' => $request->price
+            'price' => $request->price,
+            'gender' => $request->gender,
+
 
         ]);
     }
@@ -101,6 +104,7 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
+            'gender' => 'required',
 
         ],$messages);
         if ($validator->fails()) {
@@ -111,6 +115,7 @@ class ProductController extends Controller
             ->update([
                 'name' => $request->name,
                 'price' => $request->price,
+                'gender' => $request->gender,
 
             ]);
     }

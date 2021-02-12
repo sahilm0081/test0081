@@ -42,6 +42,7 @@ export default {
             products: [],
             headers: [
                 { text: "Id", value: "id" },
+                { text: "Gender", value: "gender" },
                 { text: "Name", value: "name" },
                 { text: "Price", value: "price" },
                 { text: "Actions", value: "actions", sortable: false }

@@ -3,6 +3,21 @@
         <form @submit.prevent="handleSubmit" method="POST" refs="form">
             <validation-provider
                 v-slot="{ errors }"
+                name="Select Gender"
+                rules="required"
+            >
+                <v-select
+                    :items="genders"
+                    :error-messages="errors"
+                    label="Select Gender"
+                    required
+                    name="gender"
+                    v-model="form.gender"
+                ></v-select>
+            </validation-provider>
+
+            <validation-provider
+                v-slot="{ errors }"
                 name="Name"
                 rules="required|max:50"
             >
@@ -14,7 +29,6 @@
                     required
                 ></v-text-field>
             </validation-provider>
-
             <validation-provider
                 v-slot="{ errors }"
                 name="Price"
@@ -25,7 +39,6 @@
                     :error-messages="errors"
                     label="Price"
                     required
-                    
                 ></v-text-field>
             </validation-provider>
 
@@ -46,10 +59,12 @@ export default {
     data: () => ({
         valid: true,
         loading: false,
-        form:{
-            name:'',
-            price:''
-        }
+        form: {
+            name: "",
+            price: "",
+            gender:'',
+        },
+        genders:['Men','Women']
     }),
 
     methods: {
@@ -58,7 +73,8 @@ export default {
             this.$refs.observer.validate();
             const params = {
                 name: this.form.name,
-                price:this.form.price
+                price: this.form.price,
+                gender: this.form.gender
             };
             await axios
                 .post("/app/product", params)
@@ -79,7 +95,7 @@ export default {
                         let msg = "Please check your validation!";
                         if (response.data) {
                             for (var prop in response.data.errors) {
-                            this.$toasted.show(response.data.errors[prop]);
+                                this.$toasted.show(response.data.errors[prop]);
                             }
                         }
                     } else {
