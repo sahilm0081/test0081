@@ -62,7 +62,7 @@
                     </v-card-actions>
                 </v-card>
             </v-col>
-            <v-col lg="12">
+            <v-col lg="6">
                 <template>
                     <h4 class="pt-4">Last 5 Orders</h4>
                     <v-simple-table dense>
