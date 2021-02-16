@@ -9,6 +9,7 @@ use App\FabricType;
 use App\Temperature;
 use App\DetergentType;
 use App\DetergentScent;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
@@ -29,6 +30,7 @@ class CommonController extends Controller
         $typeData = DetergentType::all();
         $scentData = DetergentScent::all();
         $fabricData = FabricType::all();
+        $statusData = OrderStatus::all();
         $data['languages'] = $languageData;
         $data['straches'] = $strachData;
         $data['temperatures'] = $temperatureData;
@@ -36,6 +38,7 @@ class CommonController extends Controller
         $data['detergenttypes'] = $typeData;
         $data['detergentscents'] = $scentData;
         $data['fabrictypes'] = $fabricData;
+        $data['statuses'] = $statusData;
         return $data;
     }
 

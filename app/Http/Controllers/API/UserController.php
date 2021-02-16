@@ -12,6 +12,8 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+        $data = User::with('addresses')->where('id', $request->user()->id)->get();
+        return  $data;
     }
     public function store(Request $request)
     {
