@@ -16,6 +16,8 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
+        $data=Order::with(['status','user','orderProducts'])->where('user_id',$request->user()->id)->get();
+        return $data;
     }
     public function store(Request $request)
     {

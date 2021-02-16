@@ -28,5 +28,5 @@ Route::prefix('/v1')->middleware('auth:api')->group(function () {
     Route::get('/moduledata', 'API\CommonController@index');
     Route::get('/products', 'API\CommonController@products');
     Route::apiResource('/user/{id}/address', 'API\UserAddressController')->only('store');
-    Route::apiResource('/order', 'API\OrderController')->only('store','show');
+    Route::apiResource('/order', 'API\OrderController')->only('store','show','index');
 });
