@@ -43754,9 +43754,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("img", {
                               attrs: {
-                                src:
-                                  "../../../../storage/" +
-                                  _vm.itemView.cover_image,
+                                src: "./storage/" + _vm.itemView.cover_image,
                                 width: "150px",
                                 height: "150px"
                               }
