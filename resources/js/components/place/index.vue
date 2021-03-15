@@ -56,7 +56,7 @@
                             {{ itemView.description }}
                             <v-divider></v-divider>
                             <img
-                                :src="'./storage/' + itemView.cover_image"
+                                :src="'../../../../storage/' + itemView.cover_image"
                                 width="150px"
                                 height="150px"
                             />
