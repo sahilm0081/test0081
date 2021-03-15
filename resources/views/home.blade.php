@@ -9,7 +9,7 @@
        // window.setting = { !!App\ Setting::first() !!}
         @else
         window.authUser = false
-        window.setting = false
+       // window.setting = false
         @endif
     })();
 </script>

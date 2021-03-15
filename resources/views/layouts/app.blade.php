@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Jareer') }}</title>
+    <title>{{ config('app.name', 'Workshore') }}</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -18,9 +18,9 @@
 </head>
 
 <body>
-    @guest
+   
     @include('navbar')
-    @endguest
+    
 
     @yield('content')
 

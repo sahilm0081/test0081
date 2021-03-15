@@ -2,8 +2,8 @@
 @section('content')
 <div class="content">
     <div class="container">
-        <h2 class="title  pt-4 text-center" style="margin-top:10rem;">
-            Welcome to Jareer
+        <h2 class="title  pt-4 text-center" >
+            Welcome to Workshore Test
         </h2>
         @auth
         <div class="main text-center">

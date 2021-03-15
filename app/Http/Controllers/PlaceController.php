@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Language;
+use App\Place;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 
-class LanguageController extends Controller
+class PlaceController extends Controller
 {
     //
     public function index()
     {
         //
-        $data = Language::all();
+        $userId = Auth::id();
+        $data = Place::where('user_id', $userId)->get();
         return $data;
     }
 
@@ -40,15 +41,29 @@ class LanguageController extends Controller
         $response['status'] = false;
         $response['data'] = '';
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'cover_image' => 'required|image|mimes:jpeg,jpg,png,gif|max:10000'
 
         ]);
         if ($validator->fails()) {
-            $response['data'] = $validator->getMessageBag()->toArray();
+            $response['errors'] = $validator->getMessageBag()->toArray();
             return response()->json($response, 422);
         }
-        return Language::create([
-            'name' => $request->name
+        $path = '';
+        if (isset($request->cover_image)) {
+            $name = $request->cover_image->getClientOriginalName();
+            $fileName = $request->cover_image->hashName();
+            $path = $request->cover_image->storeAs('uploads', $fileName, 'public');
+        }
+        return Place::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'cover_image' => $path,
+            'user_id' => Auth::id(),
+            'lat' => $request->lat,
+            'lng' => $request->lng
+
 
         ]);
     }
@@ -62,8 +77,8 @@ class LanguageController extends Controller
     public function show($id)
     {
         //
-        $language = Language::findOrFail($id);
-        return $language;
+        $data = Place::findOrFail($id);
+        return $data;
     }
 
     /**
@@ -91,17 +106,30 @@ class LanguageController extends Controller
         $response['status'] = false;
         $response['data'] = '';
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'cover_image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:10000'
 
         ]);
         if ($validator->fails()) {
-            $response['data'] = $validator->getMessageBag()->toArray();
+            $response['errors'] = $validator->getMessageBag()->toArray();
             return response()->json($response, 422);
         }
-        return Language::where('id', $id)
-            ->update([
-                'name' => $request->name,
+        $place = Place::find($id);
+        $path = $place->cover_image;
 
+        if (isset($request->cover_image)) {
+            $name = $request->cover_image->getClientOriginalName();
+            $fileName = $request->cover_image->hashName();
+            $path = $request->cover_image->storeAs('uploads', $fileName, 'public');
+        }
+        return Place::where('id', $id)
+            ->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'cover_image' => $path,
+                'lat' => $request->lat,
+                'lng' => $request->lng
             ]);
     }
 
@@ -114,9 +142,9 @@ class LanguageController extends Controller
     public function destroy($id)
     {
         //
-        $language = Language::findOrFail($id);
-        if ($language) {
-            $language->delete();
+        $data = Place::findOrFail($id);
+        if ($data) {
+            $data->delete();
         } else {
             return response()->json(['error' => 'Not found'], 403);
         }

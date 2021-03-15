@@ -14,19 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/v1')->group(function () {
-    Route::post('/login', 'API\UserController@login');
-    Route::post('/register', 'API\UserController@store');
-    
-});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('/v1')->middleware('auth:api')->group(function () {
-    Route::apiResource('/user', 'API\UserController')->only('index','store');
-    Route::get('/moduledata', 'API\CommonController@index');
-    Route::get('/products', 'API\CommonController@products');
-    Route::apiResource('/user/{id}/address', 'API\UserAddressController')->only('store');
-    Route::apiResource('/order', 'API\OrderController')->only('store','show','index');
-});
+

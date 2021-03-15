@@ -3,22 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use App\User;
-use App\Order;
+
+use App\Place;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $products=Product::get()->count();
-        $users=User::get()->count();
-        $orders=Order::get()->count();
-        $topOrders=Order::with(['user','status'])->orderBy('id','desc')->get();
-        $data['totalProducts']=$products;
-        $data['totalUsers']=$users;
-        $data['totalOrders']=$orders;
-        $data['orders']=$topOrders;
+        $places = Place::where('user_id', Auth::id())->get()->count();
+        $data['totalPlaces'] = $places;
         return $data;
     }
 }

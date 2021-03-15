@@ -13,7 +13,7 @@ import VueAxios from "vue-axios";
 import Toasted from "vue-toasted";
 import axios from "axios";
 import { routes } from "./routes";
-
+import * as VueGoogleMaps from 'vue2-google-maps';
 import {
     required,
     digits,
@@ -75,18 +75,23 @@ Vue.component("ValidationProvider", ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);
 Vue.component("z-dashboard", require("./components/dashboard.vue").default);
 
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyDfryPX4WzD2zaOpUtE5O-CLnZUC3ZLb3U',
+        libraries: 'places',
+    },
+    installComponents: true
+});
+
 const router = new VueRouter({
     mode: "history",
     routes: routes
 });
 let userData = window.authUser;
 router.beforeEach((to, from, next) => {
-    const userType = userData.user_type;
-    if (userData && userType) {
+    if (userData) {
         next();
-    } else if (userData && !userType) {
-        window.location.href = "/home";
-    } else {
+    }  else {
         window.location.href = "/login";
     }
     return;

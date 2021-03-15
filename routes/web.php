@@ -17,24 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('/app')->group(function () {
-    Route::resource('/language', 'LanguageController');
-    Route::resource('/strach', 'StrachController');
-    Route::resource('/trouser', 'TrouserController');
-    Route::resource('/detergenttype', 'DetergentTypeController');
-    Route::resource('/detergentscent', 'DetergentScentController');
-    Route::resource('/temperature', 'TemperatureController');
-    Route::resource('/fabrictype', 'FabricTypeController');
-    Route::resource('/user', 'UserController');
-    Route::resource('/user/{id}/address', 'UserAddressController');
-    Route::resource('/product', 'ProductController');
-    Route::resource('/orderstatus', 'OrderStatusController');
-    Route::resource('/order', 'OrderController');
-    Route::get('/fetchdata', 'OrderController@fetchdata');
-    Route::post('/orderupdate/{id}', 'OrderController@updatePaymentId');
+    Route::resource('/place', 'PlaceController');
     Route::get('/dashboard', 'DashboardController@index');
 });
 Route::get('/logoutuser', 'UserController@logout');

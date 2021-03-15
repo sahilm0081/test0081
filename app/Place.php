@@ -4,12 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Strach extends Model
+class Place extends Model
 {
     //
-   // protected $table = 'straches';
-
     protected $fillable = [
-        'name', 
+        'title','description','cover_image','lat','lng','user_id' 
     ];
 }
